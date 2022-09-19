@@ -1,6 +1,9 @@
 
+import 'package:fl_cliente_mediacion/providers/login_provider.dart';
+import 'package:fl_cliente_mediacion/ui/ui.dart';
 import 'package:fl_cliente_mediacion/widget/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
    
@@ -24,14 +27,17 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(height: 10,),
                         Text("Login", style: Theme.of(context).textTheme.headline4,),
                         const SizedBox(height: 30,),
-                        _FormularioLogin()
+                        ChangeNotifierProvider(
+                          create: (context) => LoginProvider(),
+                          child: _FormularioLogin()                        ,
+                          )                        
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 300,
-                )
+                const SizedBox(height: 30,),
+                const Text('Registrese', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+                const SizedBox(height: 300,)
               ],
             ),
           ),
@@ -46,32 +52,54 @@ class _FormularioLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context);
+    
     return Form(
+      key: loginProvider.formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
         children: [
-          TextFormField(
-            autocorrect: false,
-            decoration: const InputDecoration(
-            enabledBorder:  UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0xff94273E)                  
-              )
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: TextFormField(
+              onChanged: (value) => loginProvider.correo = value,              
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration:  InputDecorations.customInputDecoration(labelText: "correo electrónico", hint_text: "john.doe@gmail.com", prefixIcon: Icons.alternate_email_sharp),
+              validator: (value){
+               return ValidateTExtFormField.validateEmail(value);
+              }              
             ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0xff94273E),
-                width: 2
-              )
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: TextFormField(
+              onChanged: (value) => loginProvider.password = value,
+              autocorrect: false,
+              keyboardType: TextInputType.visiblePassword,
+              obscureText: true,
+              decoration:  InputDecorations.customInputDecoration(labelText: "clave", hint_text: "password", prefixIcon: Icons.password),
+              validator: (value) => ValidateTExtFormField.validatePassword(value),
             ),
-            label: Text('correo electrónico'),
-            hintText: "maria.eva@gmail.com",
-            labelStyle: TextStyle(
-              color: Colors.grey
+          ),
+          SizedBox(height: 30,),
+          MaterialButton(
+            onPressed: (){
+              if (!loginProvider.isValidForm()) return;
+              Navigator.pushReplacementNamed(context, 'home');
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
             ),
-            prefixIcon: Icon(Icons.alternate_email_sharp, color: Color(0xff94273E),)
+            disabledColor: Colors.grey,
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+              child: Text('Ingresar', style: TextStyle(color: Colors.white),),
             ),
-            keyboardType: TextInputType.emailAddress            
-          )
+            color: Color(0xff94273E),
+
+            )
         ],
       )
       );
