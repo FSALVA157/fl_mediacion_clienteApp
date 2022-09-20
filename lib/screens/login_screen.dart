@@ -27,10 +27,11 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(height: 10,),
                         Text("Login", style: Theme.of(context).textTheme.headline4,),
                         const SizedBox(height: 30,),
-                        ChangeNotifierProvider(
-                          create: (context) => LoginProvider(),
-                          child: _FormularioLogin()                        ,
-                          )                        
+                        _FormularioLogin()
+                        // ChangeNotifierProvider(
+                        //   create: (context) => LoginProvider(),
+                          // child: _FormularioLogin()                        ,
+                          // )                        
                       ],
                     ),
                   ),
@@ -94,8 +95,8 @@ class _FormularioLogin extends StatelessWidget {
             disabledColor: Colors.grey,
             elevation: 0,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
-              child: Text('Ingresar', style: TextStyle(color: Colors.white),),
+              padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+              child:  Text('Ingresar', style: TextStyle(color: Colors.white),),
             ),
             color: Color(0xff94273E),
 
