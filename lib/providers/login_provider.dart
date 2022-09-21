@@ -8,7 +8,8 @@ class LoginProvider extends ChangeNotifier{
   String _correo = "";
   String _password = "";
 
-  String get correo => correo;
+  String get correo => _correo;
+
   set correo(String value){
     this._correo = value;
   }

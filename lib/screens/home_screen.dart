@@ -18,14 +18,14 @@ class HomeScreen extends StatelessWidget {
           toolbarHeight: 70,
           backgroundColor: Color(0xff94273E),
           centerTitle: true,
-          title: Icon(Icons.workspaces_filled, size: 50),
+          title: const Icon(Icons.workspaces_filled, size: 50),
           leading: IconButton(
             onPressed: (){},
             icon: const Icon(Icons.menu), color: Colors.white,),
           actions: [
             IconButton(
               onPressed: (){},
-              icon: Icon(Icons.notification_add, color: Colors.white,)
+              icon: const Icon(Icons.notification_add, color: Colors.white,)
               )            
           ],
         ),
@@ -105,24 +105,27 @@ class _MySliverPersistenHeader  extends SliverPersistentHeaderDelegate {
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final loginProvider = Provider.of<LoginProvider>(context);
     final size = MediaQuery.of(context).size;
+    final progress = shrinkOffset/maxExtent;
 
-    return Container(
+    return Material(
       color: Color(0xff94273E),
-      width: double.infinity,
+      //width: double.infinity,
       child: Stack(
-        fit: StackFit.expand,
+        //fit: StackFit.expand,
         alignment: AlignmentDirectional.bottomCenter,
         children: [
-          Positioned(
-             bottom: 70,
-            // right: 30,
-            child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white),
-          ),
+          _TituloAnimated(progress: progress,),
+          _IconoAnimated(progress: progress)
+          // Positioned(
+          //     bottom: 70,
+          //   //  right: 60,
+          //    child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white),
+          // ),
           // Positioned(
           //    bottom: 70,
           //    left: 30,
           //   //right: 1,
-          //   child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white),
+          //   child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white)),
             // child: Row(
             //   mainAxisAlignment: MainAxisAlignment.center,
 
@@ -156,12 +159,12 @@ class _MySliverPersistenHeader  extends SliverPersistentHeaderDelegate {
   @override
   // TODO: implement maxExtent
   //double get maxExtent => this.max;
-  double get maxExtent => 200;
+  double get maxExtent => 264;
 
   @override
   // TODO: implement minExtent
  // double get minExtent => this.min;
- double get minExtent => 100;
+ double get minExtent => 84;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
@@ -169,4 +172,99 @@ class _MySliverPersistenHeader  extends SliverPersistentHeaderDelegate {
     return true;
   }
   
+}
+
+class _TituloAnimated extends StatelessWidget {
+final double progress;
+
+  const _TituloAnimated({
+    Key? key, required this.progress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context);
+    final String nombre = loginProvider.correo;
+    
+    //print(nombre);
+    return AnimatedContainer(
+      duration:const Duration(milliseconds: 100),
+      // padding: EdgeInsets.lerp(
+      //   EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+      //    EdgeInsets.only(bottom: 2),
+      //    progress 
+      //   ),
+        alignment: Alignment.lerp(
+          Alignment.topCenter,
+          Alignment.topLeft,
+          progress),
+        child: Text(
+              'hola $nombre',
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              style: TextStyle.lerp(
+                Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(color: Colors.white, overflow: TextOverflow.clip),
+                Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(color: Colors.white, fontSize: 0),
+                progress,
+              ),
+        ),
+      
+      );
+  }
+}
+
+class _IconoAnimated extends StatelessWidget {
+final double progress;
+
+  const _IconoAnimated({
+    Key? key, required this.progress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    
+        //print(nombre);
+    return AnimatedContainer(
+      duration:const Duration(milliseconds: 100),
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+
+        color: Colors.amberAccent,
+        borderRadius: BorderRadius.circular(30)
+      ), 
+      // padding: EdgeInsets.lerp(
+      //   EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+      //    EdgeInsets.only(bottom: 2),
+      //    progress 
+      //   ),
+        alignment: Alignment.lerp(
+          Alignment.bottomCenter,
+          Alignment.topCenter,
+          progress),
+        // child: Text(
+        //       'hola $nombre',
+        //       textAlign: TextAlign.center,
+        //       maxLines: 2,
+        //       style: TextStyle.lerp(
+        //         Theme.of(context)
+        //             .textTheme
+        //             .headline5!
+        //             .copyWith(color: Colors.white, overflow: TextOverflow.clip),
+        //         Theme.of(context)
+        //             .textTheme
+        //             .headline6!
+        //             .copyWith(color: Colors.white, fontSize: 0),
+        //         progress,
+        //       ),
+        // ),
+      
+      );
+  }
 }
