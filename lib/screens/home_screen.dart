@@ -1,6 +1,8 @@
+
 import 'package:fl_cliente_mediacion/providers/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vector_math/vector_math_64.dart' as vector;
 
 class HomeScreen extends StatelessWidget {
    
@@ -115,41 +117,22 @@ class _MySliverPersistenHeader  extends SliverPersistentHeaderDelegate {
         alignment: AlignmentDirectional.bottomCenter,
         children: [
           _TituloAnimated(progress: progress,),
-          _IconoAnimated(progress: progress)
-          // Positioned(
-          //     bottom: 70,
-          //   //  right: 60,
-          //    child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white),
-          // ),
-          // Positioned(
-          //    bottom: 70,
-          //    left: 30,
-          //   //right: 1,
-          //   child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white)),
-            // child: Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-
-            //   children: [
-            //     //Container(margin: EdgeInsets.symmetric(horizontal: 30), child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white)),
-            //     Container(margin: EdgeInsets.symmetric(horizontal: 30), child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white)),
-            //     Container(margin: EdgeInsets.symmetric(horizontal: 30), child: IconButton(onPressed: (){}, icon: Icon(Icons.add_location_rounded, size: max * 0.6), color:Colors.white))
-            //   ],
-            // ),
-            // child: ClipOval(
-            //   child: Container(
-            //     color: Colors.white,
-            //     height: 50,
-            //     width: 50,
-            //     ),
-            // )
-          //  )
+          Positioned(
+            child: Transform.rotate(
+              angle: vector.radians(360 * progress),
+              child: _IconoAnimated(progress: progress),
+              )
+            ),
+          
+          Positioned(
+            bottom: 0,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 10),
+              child: Text('INICIAR TRAMITE', style: TextStyle(color: Colors.white),)))
+          
         ],
       ),
-      // child: Column(
-      //   children: [
-      //     Text('Bienvenido: ${loginProvider.correo}'),
-      //   ],
-      // ),
+      
     );
   }
 
@@ -159,12 +142,12 @@ class _MySliverPersistenHeader  extends SliverPersistentHeaderDelegate {
   @override
   // TODO: implement maxExtent
   //double get maxExtent => this.max;
-  double get maxExtent => 264;
+  double get maxExtent => 180;
 
   @override
   // TODO: implement minExtent
  // double get minExtent => this.min;
- double get minExtent => 84;
+ double get minExtent => 120;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
@@ -189,12 +172,7 @@ final double progress;
     //print(nombre);
     return AnimatedContainer(
       duration:const Duration(milliseconds: 100),
-      // padding: EdgeInsets.lerp(
-      //   EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-      //    EdgeInsets.only(bottom: 2),
-      //    progress 
-      //   ),
-        alignment: Alignment.lerp(
+       alignment: Alignment.lerp(
           Alignment.topCenter,
           Alignment.topLeft,
           progress),
@@ -228,16 +206,21 @@ final double progress;
 
   @override
   Widget build(BuildContext context) {
-    
+    final double _currentImageSize = (120 * (1 - this.progress)).clamp(95, 120);
         //print(nombre);
     return AnimatedContainer(
       duration:const Duration(milliseconds: 100),
-      width: 100,
-      height: 100,
+      margin: EdgeInsets.only(bottom: 20),
+      width: _currentImageSize,
+      height: _currentImageSize,
       decoration: BoxDecoration(
-
-        color: Colors.amberAccent,
-        borderRadius: BorderRadius.circular(30)
+        shape: BoxShape.circle,
+        color: Colors.black38,
+        image: new DecorationImage(
+          image: AssetImage('assets/launch_cohete.png'),
+          fit: BoxFit.fill
+          ),
+        //borderRadius: BorderRadius.circular(30)
       ), 
       // padding: EdgeInsets.lerp(
       //   EdgeInsets.symmetric(horizontal: 2, vertical: 2),
@@ -247,23 +230,7 @@ final double progress;
         alignment: Alignment.lerp(
           Alignment.bottomCenter,
           Alignment.topCenter,
-          progress),
-        // child: Text(
-        //       'hola $nombre',
-        //       textAlign: TextAlign.center,
-        //       maxLines: 2,
-        //       style: TextStyle.lerp(
-        //         Theme.of(context)
-        //             .textTheme
-        //             .headline5!
-        //             .copyWith(color: Colors.white, overflow: TextOverflow.clip),
-        //         Theme.of(context)
-        //             .textTheme
-        //             .headline6!
-        //             .copyWith(color: Colors.white, fontSize: 0),
-        //         progress,
-        //       ),
-        // ),
+          progress),       
       
       );
   }
