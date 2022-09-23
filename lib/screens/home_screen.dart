@@ -20,7 +20,12 @@ class HomeScreen extends StatelessWidget {
           toolbarHeight: 70,
           backgroundColor: Color(0xff94273E),
           centerTitle: true,
-          title: const Icon(Icons.workspaces_filled, size: 50),
+          //title: const Icon(Icons.workspaces_filled, size: 50),
+          title: CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.black,
+            backgroundImage: AssetImage('assets/logo_m.png'),
+          ),
           leading: IconButton(
             onPressed: (){},
             icon: const Icon(Icons.menu), color: Colors.white,),
@@ -152,7 +157,9 @@ class _MySliverPersistenHeader  extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     // TODO: implement shouldRebuild
-    return true;
+    return maxExtent != oldDelegate.maxExtent ||
+            minExtent != oldDelegate.minExtent;
+          //  child != oldDelegate.child;
   }
   
 }
@@ -210,28 +217,21 @@ final double progress;
         //print(nombre);
     return AnimatedContainer(
       duration:const Duration(milliseconds: 100),
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       width: _currentImageSize,
       height: _currentImageSize,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.black38,
-        image: new DecorationImage(
+        image:  DecorationImage(
           image: AssetImage('assets/launch_cohete.png'),
           fit: BoxFit.fill
           ),
-        //borderRadius: BorderRadius.circular(30)
-      ), 
-      // padding: EdgeInsets.lerp(
-      //   EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-      //    EdgeInsets.only(bottom: 2),
-      //    progress 
-      //   ),
+          ),       
         alignment: Alignment.lerp(
           Alignment.bottomCenter,
           Alignment.topCenter,
-          progress),       
-      
+          progress),             
       );
   }
 }
