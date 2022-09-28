@@ -2,6 +2,8 @@
 import 'package:fl_cliente_mediacion/providers/login_provider.dart';
 import 'package:fl_cliente_mediacion/ui/input_decorations.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fl_cliente_mediacion/widget/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
@@ -15,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
     return  SafeArea(
       child: Scaffold(
+        drawer: SideMenu(),
         appBar: _appBarFijo(),
         body: const _SliverHome(),
       ),
@@ -29,14 +32,14 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Color(0xff94273E),
         centerTitle: true,
         //title: const Icon(Icons.workspaces_filled, size: 50),
-        title: CircleAvatar(
+        title: const CircleAvatar(
           radius: 20,
           backgroundColor: Colors.black,
           backgroundImage: AssetImage('assets/logo_m.png'),
         ),
-        leading: IconButton(
-          onPressed: (){},
-          icon: const Icon(Icons.menu), color: Colors.white,),
+        // leading: IconButton(
+        //   onPressed: (){},
+        //   icon: const Icon(Icons.menu), color: Colors.white,),
         actions: [
           IconButton(
             onPressed: (){},
@@ -66,7 +69,7 @@ class _SliverHome extends StatelessWidget {
         SliverList(
           delegate: SliverChildListDelegate([
              ExpansionPanelList.radio(
-               animationDuration: Duration(seconds: 1),
+               animationDuration: Duration(milliseconds: 500),
               expandedHeaderPadding: EdgeInsets.all(10),
               elevation: 3,
               children: [

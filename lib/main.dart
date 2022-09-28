@@ -1,9 +1,17 @@
 import 'package:fl_cliente_mediacion/providers/login_provider.dart';
+import 'package:fl_cliente_mediacion/providers/theme_provider.dart';
 import 'package:fl_cliente_mediacion/screens/screens.dart';
+import 'package:fl_cliente_mediacion/shared_prefences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(const AppState());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.init();
+  
+  runApp(const AppState());
+}  
+  
 
 class AppState extends StatelessWidget {
   const AppState({Key? key}) : super(key: key);
@@ -15,7 +23,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),          
           lazy: false,
-          )
+          ),
+        ChangeNotifierProvider(
+          create: (context)=>ThemeProvider(isDarkMode: Preferences.isDarkMode),)
       ],
       child: const MyApp(),
       );
@@ -27,7 +37,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
+      theme: themeProvider.currentTheme,
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       initialRoute: LoginScreen.route,
