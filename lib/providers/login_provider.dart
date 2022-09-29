@@ -20,8 +20,7 @@ class LoginProvider extends ChangeNotifier{
   }
 
   bool isValidForm(){
-    print('correo: $_correo + pass: $_password');
-         return formKey.currentState?.validate() ?? false;
+             return formKey.currentState?.validate() ?? false;
   }
 
 }

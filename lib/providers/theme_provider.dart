@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier{
   late ThemeData currentTheme;
+  late bool isDark;
 
   ThemeProvider({required bool isDarkMode}){
+    isDark = isDarkMode;
     if(isDarkMode){
        currentTheme = ThemeData.dark();
     }else{

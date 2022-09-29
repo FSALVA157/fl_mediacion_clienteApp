@@ -22,7 +22,7 @@ class InputDecorations{
             label: Text(labelText),
             hintText: hint_text,
             labelStyle: const TextStyle(
-              color: Colors.grey
+              //color: Colors.grey
             ),
             prefixIcon: (prefixIcon != null)? Icon(prefixIcon, color: Color(0xff94273E),): null
             );

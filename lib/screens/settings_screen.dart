@@ -31,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           //controller: controller,
             child: Column(
                crossAxisAlignment: CrossAxisAlignment.start,
-               children:  [
+               children:  [                
                const Text('Ajustes', style: TextStyle(fontSize: 45, fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
                const Divider(),
                SwitchListTile.adaptive(
