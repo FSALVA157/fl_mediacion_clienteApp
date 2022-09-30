@@ -43,11 +43,12 @@ class MyApp extends StatelessWidget {
       theme: themeProvider.currentTheme,
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: LoginScreen.route,
+      initialRoute: RegisterScreen.route,
       routes:{
         HomeScreen.route: (context) => const HomeScreen(),
         SettingsScreen.route:(context) => const SettingsScreen(),
-        LoginScreen.route:(context) => const LoginScreen()
+        LoginScreen.route:(context) => const LoginScreen(),
+        RegisterScreen.route: (context)=> const RegisterScreen()
       },
  
     );

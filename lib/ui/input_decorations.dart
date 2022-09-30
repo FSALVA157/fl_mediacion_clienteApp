@@ -25,6 +25,41 @@ class InputDecorations{
               //color: Colors.grey
             ),
             prefixIcon: (prefixIcon != null)? Icon(prefixIcon, color: Color(0xff94273E),): null
-            );
+            );    
   }
+
+
+  static InputDecoration roundedInputDecoration({
+    required String labelText,
+    required String hint_text,
+    IconData? prefixIcon
+  }){
+    return  InputDecoration(
+               enabledBorder: const OutlineInputBorder(
+               borderRadius: BorderRadius.all(Radius.circular(30)),
+               borderSide:  BorderSide(
+                      color: Colors.grey,
+                      width: 1.0,
+                      style: BorderStyle.solid,
+                    ),
+            ),
+            focusedBorder:const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    borderSide: BorderSide(
+                  color: Colors.grey,
+                  width: 1.0,
+                  style: BorderStyle.solid,
+                     ),
+                   ),
+            label: Text(labelText),
+            hintText: hint_text,
+            labelStyle: const TextStyle(
+              //color: Colors.grey
+            ),
+            //prefixIcon: (prefixIcon != null)? Icon(prefixIcon, color: Color(0xff94273E),): null
+            );
+
+
+  }
+
 }
