@@ -31,11 +31,11 @@ class InputDecorations{
 
   static InputDecoration roundedInputDecoration({
     required String labelText,
-    required String hint_text,
+    String? hint_text,
     IconData? prefixIcon
   }){
     return  InputDecoration(
-               enabledBorder: const OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
                borderRadius: BorderRadius.all(Radius.circular(30)),
                borderSide:  BorderSide(
                       color: Colors.grey,
@@ -46,15 +46,16 @@ class InputDecorations{
             focusedBorder:const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                     borderSide: BorderSide(
-                  color: Colors.grey,
-                  width: 1.0,
+                  color: Colors.blueAccent,
+                  width: 3.0,
                   style: BorderStyle.solid,
                      ),
                    ),
-            label: Text(labelText),
-            hintText: hint_text,
+            //label: Text(labelText),
+            labelText: labelText,
+            hintText: (hint_text != null)? hint_text: null,
             labelStyle: const TextStyle(
-              //color: Colors.grey
+              color: Colors.black
             ),
             //prefixIcon: (prefixIcon != null)? Icon(prefixIcon, color: Color(0xff94273E),): null
             );
