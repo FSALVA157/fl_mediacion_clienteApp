@@ -161,12 +161,25 @@ class _FormularioRegistro extends StatelessWidget {
                   ),
                 ),
 
-                CustomMaterialButton(
-                      title: "Registrar",
-                      textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),
-                      color: Color(0xFFFF9796),
-                      onPressed: () {},
+                Divider(
+                  color: Colors.black,
+                  height: 50,
+                  endIndent: 50,
+                  indent: 50
+                  ,
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: CustomMaterialButton( 
+                        elevation: 5,
+                        title: "Registrar",
+                        textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),
+                        color: Color(0xFFFF9796),
+                        onPressed: () {},
+                  ),
+                ),
+                SizedBox(height: 100,)
 
 
                 

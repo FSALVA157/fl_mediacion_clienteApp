@@ -13,7 +13,7 @@ class CustomMaterialButton extends StatelessWidget {
     this.borderSide = const BorderSide(width: 0, style: BorderStyle.none),
     required this.textStyle,
     this.icon,
-    this.hasIcon = false,
+    //this.hasIcon = false,
   });
 
   final VoidCallback onPressed;
@@ -26,7 +26,7 @@ class CustomMaterialButton extends StatelessWidget {
   final BorderSide borderSide;
   final TextStyle textStyle;
   final Widget? icon;
-  final bool hasIcon;
+  //final bool hasIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,8 @@ class CustomMaterialButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          hasIcon ? icon : Container(),
-          hasIcon ? SizedBox(width: 8,) : Container(),
+          (this.icon != null) ? this.icon! : Container(),
+          (this.icon != null) ? SizedBox(width: 8,) : Container(),
           title != null
               ? Text(
                   title,
@@ -53,6 +53,16 @@ class CustomMaterialButton extends StatelessWidget {
                 )
               : Container(),
         ],
+        // children: <Widget>[
+        //   hasIcon ? icon! : Container(),
+        //   hasIcon ? SizedBox(width: 8,) : Container(),
+        //   title != null
+        //       ? Text(
+        //           title,
+        //           style: textStyle,
+        //         )
+        //       : Container(),
+        // ],
       ),
     );
   }

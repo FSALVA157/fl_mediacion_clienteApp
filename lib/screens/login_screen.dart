@@ -1,5 +1,6 @@
 
 import 'package:fl_cliente_mediacion/providers/login_provider.dart';
+import 'package:fl_cliente_mediacion/screens/screens.dart';
 import 'package:fl_cliente_mediacion/ui/ui.dart';
 import 'package:fl_cliente_mediacion/widget/widgets.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,19 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30,),
-                const Text('Registrese', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+                Container(
+                  width: MediaQuery.of(context).size.width /2,
+                  child: CustomMaterialButton(
+                    elevation: 0,
+                    color: Colors.transparent,
+                    borderRadius: 20,
+                    title: "Registrese",
+                    onPressed: (){
+                      Navigator.pushNamed(context, RegisterScreen.route);
+                    }, 
+                    textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontSize: 30)),
+                ),
+                // const Text('Registrese', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
                 const SizedBox(height: 300,)
               ],
             ),
