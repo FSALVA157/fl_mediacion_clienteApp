@@ -66,7 +66,7 @@ class _SliverHome extends StatelessWidget {
           delegate: _MySliverPersistenHeader(max: maximo, min: minimo),
           pinned: true,          
           ),
-        SliverList(
+         SliverList(
           delegate: SliverChildListDelegate([
              ExpansionPanelList.radio(
                animationDuration: Duration(milliseconds: 500),
@@ -92,9 +92,12 @@ class _SliverHome extends StatelessWidget {
                 canTapOnHeader: true,
                 value: "formulario",
                 headerBuilder: (context, isExpanded){
-                  return ListTile(
-                    leading: Icon(Icons.edit_note_outlined),
-                    title: Text('Edición de Trámite en Curso', style: Theme.of(context).textTheme.headline6),                      
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: ListTile(
+                      leading: Icon(Icons.edit_note_outlined),
+                      title: Text('Edición de Trámite en Curso', style: Theme.of(context).textTheme.headline6),                      
+                    ),
                   );
                 } ,
                 body: ListTile(
@@ -110,9 +113,12 @@ ExpansionPanelRadio _expansionPanelEstadoTramite() {
                 canTapOnHeader: true,
                 value: "detalle",
                 headerBuilder: (context, isExpanded){
-                  return ListTile(
-                    leading: Icon(Icons.stacked_bar_chart_outlined),
-                    title: Text('Estado del Trámite', style: Theme.of(context).textTheme.headline6),                      
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: ListTile(
+                      leading: Icon(Icons.stacked_bar_chart_outlined),
+                      title: Text('Estado del Trámite', style: Theme.of(context).textTheme.headline6),                      
+                    ),
                   );
                 } ,
                 body: ListTile(
@@ -127,9 +133,12 @@ ExpansionPanelRadio _expansionPanelEstadoTramite() {
                 canTapOnHeader: true,
                 value: "historial",
                 headerBuilder: (context, isExpanded){
-                  return ListTile(
-                    leading: Icon(Icons.history),
-                    title: Text('Historial de Trámites', style: Theme.of(context).textTheme.headline6),                      
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: ListTile(
+                      leading: Icon(Icons.history),
+                      title: Text('Historial de Trámites', style: Theme.of(context).textTheme.headline6),                      
+                    ),
                   );
                 } ,
                 body: ListTile(
