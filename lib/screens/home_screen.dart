@@ -226,7 +226,7 @@ final double progress;
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context);
-    final String nombre = loginProvider.correo;
+    final String nombre = loginProvider.dni;
     
     //print(nombre);
     return AnimatedContainer(

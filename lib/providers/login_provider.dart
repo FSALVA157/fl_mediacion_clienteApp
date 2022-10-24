@@ -5,13 +5,14 @@ class LoginProvider extends ChangeNotifier{
 
   GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
-  String _correo = "";
+  String _dni = "";
   String _password = "";
+  
 
-  String get correo => _correo;
+  String get dni => _dni;
 
-  set correo(String value){
-    this._correo = value;
+  set dni(String value){
+    this._dni = value;
   }
 
   String get password => _password;

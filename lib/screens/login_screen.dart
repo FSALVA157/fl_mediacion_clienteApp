@@ -1,6 +1,7 @@
 
 import 'package:fl_cliente_mediacion/providers/login_provider.dart';
 import 'package:fl_cliente_mediacion/screens/screens.dart';
+import 'package:fl_cliente_mediacion/services/auth_service_provider.dart';
 import 'package:fl_cliente_mediacion/ui/ui.dart';
 import 'package:fl_cliente_mediacion/widget/widgets.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +68,7 @@ class _FormularioLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context);
+    final authServiceProvider = Provider.of<AuthServiceProvider>(context);
     
     return Form(
       key: loginProvider.formKey,
@@ -76,10 +78,10 @@ class _FormularioLogin extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: TextFormField(
-              onChanged: (value) => loginProvider.correo = value,              
+              onChanged: (value) => loginProvider.dni = value,              
               autocorrect: false,
-              keyboardType: TextInputType.emailAddress,
-              decoration:  InputDecorations.customInputDecoration(labelText: "correo electrónico", hint_text: "john.doe@gmail.com", prefixIcon: Icons.alternate_email_sharp),
+              keyboardType: TextInputType.text,
+              decoration:  InputDecorations.customInputDecoration(labelText: "dni", hint_text: "36258741", prefixIcon: Icons.account_box_rounded),
               validator: (value){
                return ValidateTExtFormField.validateEmail(value);
               }              
@@ -98,8 +100,14 @@ class _FormularioLogin extends StatelessWidget {
           ),
           SizedBox(height: 30,),
           MaterialButton(
-            onPressed: (){
-              if (!loginProvider.isValidForm()) return;
+            onPressed: ()async{
+
+              Map<String, dynamic> data = await authServiceProvider.loginUser(
+                                  loginProvider.dni,
+                                  loginProvider.password);
+              //print(data);
+
+              // if (!loginProvider.isValidForm()) return;
               Navigator.pushReplacementNamed(context, 'home');
             },
             shape: RoundedRectangleBorder(

@@ -1,6 +1,7 @@
 import 'package:fl_cliente_mediacion/providers/login_provider.dart';
 import 'package:fl_cliente_mediacion/providers/theme_provider.dart';
 import 'package:fl_cliente_mediacion/screens/screens.dart';
+import 'package:fl_cliente_mediacion/services/auth_service_provider.dart';
 import 'package:fl_cliente_mediacion/shared_prefences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,9 @@ class AppState extends StatelessWidget {
           lazy: false,
           ),
         ChangeNotifierProvider(
-          create: (context)=>ThemeProvider(isDarkMode: Preferences.isDarkMode),)
+          create: (context)=>ThemeProvider(isDarkMode: Preferences.isDarkMode),),
+        ChangeNotifierProvider(
+          create: (context)=> AuthServiceProvider(),)
       ],
       child: const MyApp(),
       );
