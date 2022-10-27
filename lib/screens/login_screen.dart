@@ -82,9 +82,9 @@ class _FormularioLogin extends StatelessWidget {
               autocorrect: false,
               keyboardType: TextInputType.text,
               decoration:  InputDecorations.customInputDecoration(labelText: "dni", hint_text: "36258741", prefixIcon: Icons.account_box_rounded),
-              validator: (value){
-               return ValidateTExtFormField.validateEmail(value);
-              }              
+              // validator: (value){
+              //  return ValidateTExtFormField.validateEmail(value);
+              // }              
             ),
           ),
           Padding(
@@ -95,20 +95,21 @@ class _FormularioLogin extends StatelessWidget {
               keyboardType: TextInputType.visiblePassword,
               obscureText: true,
               decoration:  InputDecorations.customInputDecoration(labelText: "clave", hint_text: "password", prefixIcon: Icons.password),
-              validator: (value) => ValidateTExtFormField.validatePassword(value),
+              // validator: (value) => ValidateTExtFormField.validatePassword(value),
             ),
           ),
           SizedBox(height: 30,),
           MaterialButton(
-            onPressed: ()async{
-
+            onPressed: () async{
+              print(loginProvider.dni);
+              print(loginProvider.password);
               Map<String, dynamic> data = await authServiceProvider.loginUser(
                                   loginProvider.dni,
                                   loginProvider.password);
-              //print(data);
+              print(data);
 
               // if (!loginProvider.isValidForm()) return;
-              Navigator.pushReplacementNamed(context, 'home');
+              // Navigator.pushReplacementNamed(context, 'home');
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)
