@@ -1,4 +1,5 @@
 
+import 'package:fl_cliente_mediacion/models/ciudadano_model.dart';
 import 'package:fl_cliente_mediacion/providers/login_provider.dart';
 import 'package:fl_cliente_mediacion/screens/screens.dart';
 import 'package:fl_cliente_mediacion/services/auth_service_provider.dart';
@@ -101,15 +102,14 @@ class _FormularioLogin extends StatelessWidget {
           SizedBox(height: 30,),
           MaterialButton(
             onPressed: () async{
-              print(loginProvider.dni);
-              print(loginProvider.password);
-              Map<String, dynamic> data = await authServiceProvider.loginUser(
+            
+              CiudadanoModel data = await authServiceProvider.loginUser(
                                   loginProvider.dni,
                                   loginProvider.password);
-              print(data);
+              loginProvider.nombre = data.nombre.toString();
 
               // if (!loginProvider.isValidForm()) return;
-              // Navigator.pushReplacementNamed(context, 'home');
+              Navigator.pushReplacementNamed(context, 'home');
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)

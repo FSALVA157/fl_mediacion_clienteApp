@@ -7,7 +7,15 @@ class LoginProvider extends ChangeNotifier{
 
   String _dni = "";
   String _password = "";
+
+  String _nombre = "";
   
+  String get nombre => _nombre;
+
+  set nombre(String value){
+    this._nombre = value;
+    notifyListeners();
+  }
 
   String get dni => _dni;
 

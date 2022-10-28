@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:fl_cliente_mediacion/models/ciudadano_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,22 +10,23 @@ class AuthServiceProvider extends ChangeNotifier{
 
 Future<dynamic>  loginUser(String user, String pass)async{
     final Map<String, dynamic> authData = {
-      "user": user,
-      "password": pass
+      "user": user.toString(),
+      "password": pass.toString()
     };
+    
     //final url = Uri.https(this._base_url, "/auth/login?user=32505430&password=123456");
     final url = Uri.https(this._base_url, "/auth/login");
-
-    print(url);
-    //final response = await http.post(url);
+   
     //final response = await http.post(url, body: json.encode(authData));
-    final response = await http.post(url, body: {'user': '32505430', 'password': '123456'});
+    final response = await http.post(url, body: authData);
     print(response.statusCode);
-    print(response.body);
+
     
-    final Map<String, dynamic> responseDecoded = json.decode(response.body);
-    print(responseDecoded);
-    return responseDecoded;
+    //final Map<String, dynamic> responseDecoded = json.decode(response.body);
+    final responseDecoded = json.decode(response.body);
+    final dataCiudadano = CiudadanoModel.fromMap(responseDecoded);
+   // print(dataCiudadano.apellido);
+    return dataCiudadano;
   }
 
 
