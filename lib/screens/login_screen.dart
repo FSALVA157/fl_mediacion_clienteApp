@@ -82,7 +82,7 @@ class _FormularioLogin extends StatelessWidget {
               onChanged: (value) => loginProvider.dni = value,              
               autocorrect: false,
               keyboardType: TextInputType.text,
-              decoration:  InputDecorations.customInputDecoration(labelText: "dni", hint_text: "36258741", prefixIcon: Icons.account_box_rounded),
+              decoration:  InputDecorations.customInputDecoration(labelText: "dni", hint_text: "21212121", prefixIcon: Icons.account_box_rounded),
               // validator: (value){
               //  return ValidateTExtFormField.validateEmail(value);
               // }              
@@ -116,11 +116,11 @@ class _FormularioLogin extends StatelessWidget {
             ),
             disabledColor: Colors.grey,
             elevation: 0,
-            child: Padding(
+            child:  Padding(
               padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
-              child:  Text('Ingresar', style: TextStyle(color: Colors.white),),
+              child: Text('Ingresar', style: TextStyle(color: Colors.white),),
             ),
-            color: Color(0xff94273E),
+            color:  Color(0xff94273E),
 
             )
         ],

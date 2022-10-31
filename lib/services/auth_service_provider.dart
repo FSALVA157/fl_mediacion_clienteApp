@@ -29,6 +29,19 @@ Future<dynamic>  loginUser(String user, String pass)async{
     return dataCiudadano;
   }
 
+  registerUser(CiudadanoModel dataCiudadano) async{
+    final url = Uri.https(this._base_url, "/ciudadanos");
+    final response = await http.post(url, body: dataCiudadano.toMap());
+    print(response.statusCode);
+    // final dataDecoded = json.decode(response.body);
+    // final dataFinal = CiudadanoModel.fromMap(dataDecoded);
+    // return dataFinal;
+    
+    //final dataDecoded = json.decode(response.body)
+    //final respData = CiudadanoModel.fromMap(json)
+
+  }
+
 
 
 
